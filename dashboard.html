@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gas Booking Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Gas Booking System</h1>
+        <button id="book-cylinder-btn">Book Gas Cylinder</button>
+        <div id="booking-history"></div>
+        <button id="logout-btn">Logout</button>
+    </div>
+
+    <script type="module">
+        import { logout } from "./auth.js";
+        import { bookCylinder, loadBookings } from "./firestore.js";
+        import { auth } from "./firebase-config.js";
+
+        document.getElementById("book-cylinder-btn").addEventListener("click", bookCylinder);
+        document.getElementById("logout-btn").addEventListener("click", logout);
+
+        auth.onAuthStateChanged((user) => {
+            if (user) loadBookings(); // Load booking history when user logs in
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="styless.css">
+    <script type="module" src="adminDashboard.js" defer></script>
+</head>
+<body>
+    <div class="dashboard">
+        <h1>🚀 Admin Dashboard</h1>
+        <button id="logoutBtn">Logout</button>
+        <div id="adminidview"></div>
+        <h2>📦 Bookings</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>User</th>
+                    <th>Booking Date</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="bookingList">
+                <!-- Dynamic Bookings from Firestore -->
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

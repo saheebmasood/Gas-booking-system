@@ -1,0 +1,75 @@
+/* Global Styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    background-image: url("https://images.unsplash.com/photo-1556909115-3f381036bcb3?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGNvdXBsZSUyMGNvb2tpbmd8ZW58MHx8MHx8fDA%3D");
+    background-size: cover;
+    background-repeat:  no-repeat;
+    background-position: left;
+}
+
+/* Form Container */
+.container {
+    width: 20%;
+    margin-top: 10%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+    background: white;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+/* Input Fields */
+input {
+    width: 90%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Buttons */
+button {
+    width: 100%;
+    padding: 10px;
+    background: #ff4500;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+button:hover {
+    background: #e03e00;
+}
+
+/* Booking History */
+#booking-history {
+    margin-top: 15px;
+    padding: 10px;
+    background: white;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    /*width: 300px;*/
+    margin: 20px auto;
+}
+@media only screen and (max-width: 600px) {
+    
+    .container {
+
+        width: 35%;
+    }
+    body{
+        
+        background-size: 200%;
+        background-color: #991a04;
+        background-repeat:  no-repeat;
+        background-position: left;
+
+    }
+  }
