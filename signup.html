@@ -10,6 +10,8 @@
 
     <div class="container">
         <h2>Signup</h2>
+        <input type="text" id="signup-name" placeholder="Enter your name">
+        <input type="text" id="signup-address" placeholder="Enter your address">
         <input type="email" id="signup-email" placeholder="Enter your email">
         <input type="password" id="signup-password" placeholder="Enter your password">
         <button id="signup-btn">Signup</button>
@@ -19,11 +21,19 @@
 
     <script type="module">
         import { signup } from "./auth.js";
-
+        
         document.getElementById("signup-btn").addEventListener("click", () => {
+            const name = document.getElementById("signup-name").value;
+            const address = document.getElementById("signup-address").value;
             const email = document.getElementById("signup-email").value;
             const password = document.getElementById("signup-password").value;
-            signup(email, password);
+
+            if (!name || !address || !email || !password) {
+                alert("Please fill all the fields.");
+                return;
+            }
+
+            signup(name, address, email, password);
         });
     </script>
 

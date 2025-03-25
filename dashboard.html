@@ -9,7 +9,10 @@
 <body>
 
     <div class="container">
-        <h1>Gas Booking System</h1>
+        <h1>Welcome, <span id="user-name">User</span>!</h1>
+        <p><strong>Address:</strong> <span id="user-address">Loading...</span></p>
+        <p><strong>Gas Cylinder Price:</strong> ₹<span id="gas-price">Loading...</span></p>
+
         <button id="book-cylinder-btn">Book Gas Cylinder</button>
         <div id="booking-history"></div>
         <button id="logout-btn">Logout</button>
@@ -18,13 +21,33 @@
     <script type="module">
         import { logout } from "./auth.js";
         import { bookCylinder, loadBookings } from "./firestore.js";
-        import { auth } from "./firebase-config.js";
+        import { auth, db } from "./firebase-config.js";
+        import { doc, getDoc } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-firestore.js";
 
         document.getElementById("book-cylinder-btn").addEventListener("click", bookCylinder);
         document.getElementById("logout-btn").addEventListener("click", logout);
 
-        auth.onAuthStateChanged((user) => {
-            if (user) loadBookings(); // Load booking history when user logs in
+        auth.onAuthStateChanged(async (user) => {
+            if (user) {
+                loadBookings(); // Load booking history
+
+                // Fetch user details from Firestore
+                const userDoc = await getDoc(doc(db, "users", user.uid));
+                if (userDoc.exists()) {
+                    document.getElementById("user-name").textContent = userDoc.data().name;
+                    document.getElementById("user-address").textContent = userDoc.data().address;
+                }
+
+                // Fetch Gas Cylinder Price from Firestore
+                const priceDoc = await getDoc(doc(db, "settings", "gas_price"));
+                if (priceDoc.exists()) {
+                    document.getElementById("gas-price").textContent = priceDoc.data().price;
+                } else {
+                    document.getElementById("gas-price").textContent = "Not Available";
+                }
+            } else {
+                window.location.href = "login.html"; // Redirect if not logged in
+            }
         });
     </script>
 

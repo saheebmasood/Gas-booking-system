@@ -1,14 +1,26 @@
-import { auth } from "./firebase-config.js";
+import { auth, db } from "./firebase-config.js";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-auth.js";
+import { setDoc, doc } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-firestore.js";
 
 // Signup Function
-const signup = (email, password) => {
-    createUserWithEmailAndPassword(auth, email, password)
-        .then(() => {
-            alert("Signup successful! Redirecting to login...");
-            window.location.href = "login.html";
-        })
-        .catch(error => alert(error.message));
+const signup = async (name, address, email, password) => {
+    try {
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
+
+        // Store additional user details in Firestore
+        await setDoc(doc(db, "users", user.uid), {
+            name,
+            address,
+            email,
+            userId: user.uid
+        });
+
+        alert("Signup successful! Redirecting to login...");
+        window.location.href = "login.html";
+    } catch (error) {
+        alert(error.message);
+    }
 };
 
 // Login Function

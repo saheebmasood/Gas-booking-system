@@ -10,14 +10,23 @@
 <body>
     <div class="dashboard">
         <h1>🚀 Admin Dashboard</h1>
+        <p><strong>Admin:</strong> <span id="admin-email">Loading...</span></p>
         <button id="logoutBtn">Logout</button>
-        <div id="adminidview"></div>
+        
+        <h2>💰 Set Gas Price</h2>
+        <input type="number" id="gasPriceInput" placeholder="Enter Price (₹)">
+        <button id="setPriceBtn">Set Price</button>
+        <p><strong>Current Gas Price: ₹</strong><span id="currentGasPrice">Loading...</span></p>
+
         <h2>📦 Bookings</h2>
         <table>
             <thead>
                 <tr>
-                    <th>User</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Address</th>
                     <th>Booking Date</th>
+                    <th>Price (₹)</th>
                     <th>Status</th>
                     <th>Action</th>
                 </tr>
